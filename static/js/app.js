@@ -24,15 +24,25 @@ function buildTable(data) {
 }
 
 // 1. Create a variable to keep track of all the filters as an object.
-var filters;
+var filters = {};
 
 // 3. Use this function to update the filters. 
 function updateFilters() {
 
     // 4a. Save the element that was changed as a variable.
-    d3.select(updateFilters)
+    let changedElement = d3.select(this);
     // 4b. Save the value that was changed as a variable.
+    let elementvalue = changedElement.property("value");
+    console.log(elementValue); 
+    
+    let filterId = changedElement.attr("id");
+    console.log(filterId);
 
+    if (elementValue) {
+      filters[filterId] = elementValue;
+    }
+
+    updateTable();
     // 4c. Save the id of the filter that was changed as a variable.
 
   
@@ -63,7 +73,7 @@ function updateFilters() {
   }
   
   // 2. Attach an event to listen for changes to each filter - detect change and call updateFilters()
-  d3.selectAll("updateFilters").on("click", handleClick);
+  d3.selectAll("input").on("change", updateFilters);
   
   // Build the table when the page loads
   buildTable(tableData);
