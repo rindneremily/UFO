@@ -55,7 +55,7 @@ function updateFilters() {
   
     // 6. Call function to apply all filters and rebuild the table
     filterTable();
-  
+    buildTable(filteredData);
   }
   
   // 7. Use this function to filter the table when data is entered.
